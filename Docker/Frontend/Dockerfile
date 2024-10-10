@@ -1,6 +1,6 @@
 # Stage 1: Build the React app
 # Use the official Node.js image for building the application
-FROM node:20 as build
+FROM node:16 as build
 
 # Set the working directory inside the container
 WORKDIR /app
