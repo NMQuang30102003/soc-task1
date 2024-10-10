@@ -1,22 +1,23 @@
 # Stage 1: Build the React app
 # Use the official Node.js image for building the application
-FROM node:16 as build
+FROM node:20 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the package.json and package-lock.json (if exists) to install dependencies
-COPY package*.json ./
+COPY ../../Frontend/learn-joinjs-react-main/package*.json ./
+COPY ../../Frontend/learn-joinjs-react-main/joint-plus.tgz ./
 
 # Install dependencies
-RUN npm install --verbose
+RUN npm install 
 
 # Copy the rest of the application code to the container
-COPY . .
+COPY ../../Frontend/learn-joinjs-react-main ./
 
 # Build the application
 RUN npm run build
-
+RUN ls -R /app/dist
 # Stage 2: Serve the React app using a lightweight web server
 # Use an official Nginx image to serve the application
 FROM nginx:alpine
