@@ -1,7 +1,7 @@
 name: Pipeline React Frontend Project
 on:
   push:
-   branches: main
+   branches: master
    with:
       - Docker/Frontend/**
       - 'docker-compose.yaml'
@@ -27,7 +27,7 @@ jobs:
       - name: Build & Push Docker
         uses: docker/build-push-action@v6
         with:
-         context: Frontend/learn-jointjs-react
+         context: Frontend/learn-jointjs-react-main
          file: ../../Docker/Frontend/Dockerfile
          platforms: linux/amd64
          tags: |
