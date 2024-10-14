@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
     with:
       - Docker/Backend/**
       - 'docker-compose.yaml'
