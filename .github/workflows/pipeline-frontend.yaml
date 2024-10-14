@@ -1,7 +1,9 @@
 name: Pipeline React Frontend Project
 on:
   push:
-   branches: develop
+   branches: 
+    - master
+    - develop
    with:
       - Docker/Frontend/**
       - 'docker-compose.yaml'
