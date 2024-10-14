@@ -1,7 +1,6 @@
 services:
   backend:
-    build:
-      context: .
+    image: python-backend:1.0.0
     ports:
       - 8001:8001
     environment:
@@ -33,8 +32,21 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  frontend:
+    image: es6-frontend:1.0.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app  # Gắn thư mục hiện tại vào container
+      - /usr/src/app/node_modules  # Tránh xóa các node_modules cục bộ
+    working_dir: /usr/src/app
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - backend
+
 volumes:
   db-data:
 secrets:
   db-password:
-    file: db/password.txt
+    file: ./db/password.txt
